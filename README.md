@@ -1,51 +1,76 @@
-# DreamNode: LoveResilience
+# Love Resilience - Digital Card Deck
 
-This is a DreamNode - a git repository representing a thought-form or person in the **InterBrain** knowledge management system.
+A beautiful digital sanctuary for practical spirituality, featuring an interactive 3D card deck for daily inspiration and guidance.
 
-## Universal Dream Description (UDD)
+## ✨ Features
 
-The `udd.json` file contains the essential metadata for this DreamNode:
+- **Digital Temple Experience**: Guided centering flow before card selection
+- **Card of the Day**: Personalized daily cards with consistent results per user
+- **Intuitive Selection**: 3D card interface with hover effects and intuitive picking
+- **Beautiful Design**: Soft, elegant aesthetic with 70 hand-crafted card designs
+- **Responsive**: Works seamlessly on desktop and mobile devices
+- **Professional Spirituality**: Appeals to both business professionals and spiritual seekers
 
-```json
-{
-  "uuid": "Unique identifier (constant)",
-  "title": "Display name/title", 
-  "type": "dream or dreamer",
-  "dreamTalk": "Path to symbolic representation",
-  "liminalWebRelationships": ["Connected DreamNode UUIDs"],
-  "submodules": ["Child DreamNode UUIDs"],
-  "supermodules": ["Parent DreamNode UUIDs"]
-}
+## 🚀 Quick Start
+
+### Local Development
+```bash
+npm install
+npm run dev
+```
+Visit `http://localhost:5173/LoveResilience/`
+
+### Building for Production
+```bash
+npm run build
 ```
 
-## Relationships
+### Running Tests
+```bash
+npm test
+```
 
-### Liminal Web (Horizontal)
-- **Dreams** connect to **Dreamers** who hold them
-- **Dreamers** connect to **Dreams** they carry
-- Forms the social fabric of shared knowledge
+## 🎯 How to Use
 
-### Holonic Structure (Vertical)  
-- **Submodules**: Ideas that are part of this idea
-- **Supermodules**: Larger ideas this idea participates in
-- Enables fractal knowledge organization
+1. **Welcome Screen**: Choose between "Card of the Day" or "Draw a Card"
+2. **Centering**: Brief moment to center yourself and set intention
+3. **Selection**: Intuitively choose a card from the shuffled deck
+4. **Guidance**: Explore meaning, reflection questions, and inspired actions
 
-## Coherence Beacons
+## 🛠 Tech Stack
 
-This DreamNode includes git hooks that maintain relationship coherence:
+- **React + TypeScript** for robust component architecture
+- **React Three Fiber** for beautiful 3D card interactions
+- **Vite** for fast development and optimized builds
+- **Zustand** for elegant state management
+- **Vitest** for comprehensive testing
+- **Git LFS** for efficient media asset management
 
-- **pre-commit**: Integrates external references as submodules
-- **post-commit**: Updates bidirectional relationship tracking
+## 🎨 Card Collection
 
-Changes propagate through the peer-to-peer network via **Radicle**.
+70 beautiful cards covering themes of:
+- **Self-Love & Acceptance** 
+- **Resilience & Strength**
+- **Purpose & Vision**
+- **Connection & Support**
+- **Healing & Growth**
+- **Joy & Gratitude**
 
-## License
+## 📝 Current Status
 
-This DreamNode is shared under the **GNU Affero General Public License v3.0** - a strong copyleft license ensuring this knowledge remains free and open for all.
+### ✅ Completed
+- Full React Three Fiber app implementation
+- All core features working
+- Comprehensive test suite
+- TypeScript integration
+- Responsive design
+- Local development environment
 
-## InterBrain
+### 🔧 Known Issues
+- **GitHub Pages Deployment**: Git LFS media files causing deployment failures
+  - Issue: `gh-pages` package fails with E2BIG error due to 278MB of card images
+  - Solution needed: Investigate GitHub Actions deployment or alternative hosting
 
-Part of the **InterBrain** project: transcending personal knowledge management toward collective knowledge gardening.
+---
 
-- **Repository**: https://github.com/ProjectLiminality/InterBrain
-- **Vision**: Building DreamOS - a decentralized operating system for collective sensemaking
+*Built with practical spirituality in mind - bridging the technical and the transcendent* ✨
