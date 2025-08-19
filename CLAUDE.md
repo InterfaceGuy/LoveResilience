@@ -125,11 +125,25 @@ Love Resilience is a digital card deck app designed for people seeking a more re
 - Community features (potential)
 - Meditation audio integration (potential)
 
-## Design Assets
-- **Reference**: LoveResilience.png shows card aesthetic
-- **Color Palette**: Soft greens, golds, cream, gentle pink tones
+## Digital Assets Structure
+
+### Card Assets (278MB total)
+- **CardSet/ directory**: 70 high-quality card front images (272MB)
+  - Format: JPG files with descriptive names
+  - Naming pattern: `[number]_[theme]_[optional_category].jpg`
+  - Examples: `0_let_the_light_in.jpg`, `47_priority_DISCIPLINE_CAUSAL_ANALYSIS.jpg`
+- **Backside.jpg**: Universal back pattern for all cards (4.8MB)
+  - Beautiful golden mandala design on soft background
+  - Same meditation-inducing pattern for intuitive card selection
+- **Cover.png**: Special cover card, also corresponds to card in set (1.5MB)
+  - "let the light in" design - ethereal wing/leaf motif
+
+### Design Aesthetic (from visual assets)
+- **Color Palette**: Soft greens, golds, cream, gentle pink/beige tones
 - **Style**: Ethereal, elegant, professionally spiritual
 - **Typography**: Clean, readable, contemplative
+- **Back Pattern**: Meditative golden mandala design
+- **Card Frame**: Consistent soft border design across all cards
 
 ## Key Success Metrics
 - Users feel genuinely helped and inspired
