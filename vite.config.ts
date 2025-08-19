@@ -5,6 +5,7 @@ export default defineConfig({
   plugins: [react()],
   base: '/LoveResilience/',
   assetsInclude: ['**/*.jpg', '**/*.png', '**/*.jpeg'],
+  publicDir: 'public',
   test: {
     globals: true,
     environment: 'jsdom',

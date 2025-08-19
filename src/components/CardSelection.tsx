@@ -1,9 +1,10 @@
 import { useRef, useState, useEffect } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { useTexture, Text } from '@react-three/drei'
+import { Text } from '@react-three/drei'
 import { useSpring, a } from '@react-spring/three'
 import { useAppStore } from '../store/useAppStore'
 import { Card } from '../types/Card'
+import { SafeTexture } from './TextureLoader'
 import * as THREE from 'three'
 
 interface Card3DProps {
@@ -17,7 +18,6 @@ interface Card3DProps {
 
 const Card3D = ({ position, backside, isHovered, onClick, onHover }: Card3DProps) => {
   const meshRef = useRef<THREE.Mesh>(null)
-  const backsideTexture = useTexture(backside)
   
   const { scale, rotationY } = useSpring({
     scale: isHovered ? 1.1 : 1,
@@ -26,22 +26,26 @@ const Card3D = ({ position, backside, isHovered, onClick, onHover }: Card3DProps
   })
   
   return (
-    <a.mesh
-      ref={meshRef}
-      position={position}
-      scale={scale}
-      rotation-y={rotationY}
-      onClick={onClick}
-      onPointerEnter={() => onHover(true)}
-      onPointerLeave={() => onHover(false)}
-    >
-      <planeGeometry args={[1.2, 1.8]} />
-      <meshStandardMaterial
-        map={backsideTexture}
-        transparent
-        side={THREE.DoubleSide}
-      />
-    </a.mesh>
+    <SafeTexture url={backside}>
+      {(texture) => (
+        <a.mesh
+          ref={meshRef}
+          position={position}
+          scale={scale}
+          rotation-y={rotationY}
+          onClick={onClick}
+          onPointerEnter={() => onHover(true)}
+          onPointerLeave={() => onHover(false)}
+        >
+          <planeGeometry args={[1.2, 1.8]} />
+          <meshStandardMaterial
+            map={texture}
+            transparent
+            side={THREE.DoubleSide}
+          />
+        </a.mesh>
+      )}
+    </SafeTexture>
   )
 }
 

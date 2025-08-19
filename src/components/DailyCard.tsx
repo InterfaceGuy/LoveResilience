@@ -1,14 +1,14 @@
 import { useEffect } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { useTexture, Text, Float } from '@react-three/drei'
+import { Text, Float } from '@react-three/drei'
 import { useSpring, a } from '@react-spring/three'
 import { useAppStore } from '../store/useAppStore'
+import { SafeTexture } from './TextureLoader'
 import * as THREE from 'three'
 import { useRef } from 'react'
 
 const DailyCard3D = ({ imagePath }: { imagePath: string }) => {
   const meshRef = useRef<THREE.Mesh>(null)
-  const texture = useTexture(imagePath)
   
   const { scale, rotationY } = useSpring({
     from: { scale: 0, rotationY: Math.PI },
@@ -23,16 +23,20 @@ const DailyCard3D = ({ imagePath }: { imagePath: string }) => {
   })
   
   return (
-    <Float speed={1.5} rotationIntensity={0.1} floatIntensity={0.3}>
-      <a.mesh ref={meshRef} scale={scale} rotation-y={rotationY}>
-        <planeGeometry args={[2.5, 3.8]} />
-        <meshStandardMaterial
-          map={texture}
-          transparent
-          side={THREE.DoubleSide}
-        />
-      </a.mesh>
-    </Float>
+    <SafeTexture url={imagePath}>
+      {(texture) => (
+        <Float speed={1.5} rotationIntensity={0.1} floatIntensity={0.3}>
+          <a.mesh ref={meshRef} scale={scale} rotation-y={rotationY}>
+            <planeGeometry args={[2.5, 3.8]} />
+            <meshStandardMaterial
+              map={texture}
+              transparent
+              side={THREE.DoubleSide}
+            />
+          </a.mesh>
+        </Float>
+      )}
+    </SafeTexture>
   )
 }
 

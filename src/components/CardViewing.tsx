@@ -1,13 +1,13 @@
 import { useRef, useState } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { useTexture, Float } from '@react-three/drei'
+import { Float } from '@react-three/drei'
 import { useSpring, a } from '@react-spring/three'
 import { useAppStore } from '../store/useAppStore'
+import { SafeTexture } from './TextureLoader'
 import * as THREE from 'three'
 
 const Card3DDisplay = ({ imagePath }: { imagePath: string }) => {
   const meshRef = useRef<THREE.Mesh>(null)
-  const texture = useTexture(imagePath)
   
   const { rotationY } = useSpring({
     from: { rotationY: Math.PI },
@@ -22,16 +22,20 @@ const Card3DDisplay = ({ imagePath }: { imagePath: string }) => {
   })
   
   return (
-    <Float speed={1} rotationIntensity={0.1} floatIntensity={0.2}>
-      <a.mesh ref={meshRef} rotation-y={rotationY}>
-        <planeGeometry args={[3, 4.5]} />
-        <meshStandardMaterial
-          map={texture}
-          transparent
-          side={THREE.DoubleSide}
-        />
-      </a.mesh>
-    </Float>
+    <SafeTexture url={imagePath}>
+      {(texture) => (
+        <Float speed={1} rotationIntensity={0.1} floatIntensity={0.2}>
+          <a.mesh ref={meshRef} rotation-y={rotationY}>
+            <planeGeometry args={[3, 4.5]} />
+            <meshStandardMaterial
+              map={texture}
+              transparent
+              side={THREE.DoubleSide}
+            />
+          </a.mesh>
+        </Float>
+      )}
+    </SafeTexture>
   )
 }
 

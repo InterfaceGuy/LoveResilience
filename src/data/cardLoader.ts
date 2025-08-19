@@ -1,4 +1,5 @@
 import { Card, CardData } from '../types/Card'
+import { cardManifest } from './cardManifest'
 
 const parseFileName = (fileName: string): { id: string; name: string; theme: string; category?: string } => {
   const nameWithoutExt = fileName.replace('.jpg', '')
@@ -18,17 +19,11 @@ const parseFileName = (fileName: string): { id: string; name: string; theme: str
 }
 
 export const loadCardData = async (): Promise<CardData> => {
-  const cardModules = (import.meta as any).glob('/CardSet/*.jpg', { 
-    query: '?url', 
-    import: 'default' 
-  }) as Record<string, () => Promise<string>>
-  
   const cards: Card[] = []
   
-  for (const [path, importFn] of Object.entries(cardModules)) {
-    const fileName = path.split('/').pop() || ''
+  for (const fileName of cardManifest) {
     const { id, name, theme, category } = parseFileName(fileName)
-    const imagePath = await importFn()
+    const imagePath = `/LoveResilience/CardSet/${fileName}`
     
     cards.push({
       id,
@@ -52,8 +47,8 @@ export const loadCardData = async (): Promise<CardData> => {
   
   cards.sort((a, b) => parseInt(a.id) - parseInt(b.id))
   
-  const backside = '/Backside.jpg'
-  const cover = '/Cover.png'
+  const backside = '/LoveResilience/Backside.jpg'
+  const cover = '/LoveResilience/Cover.png'
   
   return { cards, backside, cover }
 }
